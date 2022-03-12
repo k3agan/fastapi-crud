@@ -1,16 +1,12 @@
+from app.api import ping
+from app.api import sequence
 from fastapi import FastAPI
 
 app = FastAPI()
 
+app.include_router(ping.router)
+app.include_router(sequence.router)
 
-@app.get("/ping")
-def pong():
-    return {"ping": "pong!"}
-
-
-@app.get("/sequence")
-def pong():
-    return {"sequence": ["pong!0", "pong!1", "pong!2"]}
 
 # Minimum viable (with just the plotly data stuff) graph for testing
 
