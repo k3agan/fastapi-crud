@@ -1,12 +1,11 @@
 from fastapi import FastAPI
+
+from app.api import notes, ping, sequence
 from app.db import engine, database, metadata
 
-from app.api import ping
-from app.api import sequence
+metadata.create_all(engine)
 
 app = FastAPI()
-
-metadata.create_all(engine)
 
 
 @app.on_event("startup")
@@ -20,6 +19,7 @@ async def shutdown():
 
 app.include_router(ping.router)
 app.include_router(sequence.router)
+app.include_router(notes.router, prefix="/notes", tags=["notes"])
 
 # Minimum viable (with just the plotly data stuff) graph for testing
 
