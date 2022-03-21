@@ -27,20 +27,3 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/src/Dockerfile'
         tags: |
           $(tag)
-
-- stage: Test
-  displayName: Test image
-  jobs:
-  - job: Test
-    displayName: Test
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: UsePythonVersion@0
-      displayName: 'Use Python 3.x'
-
-    - bash: |
-      pip install pytest 
-      pip install pytest-cov 
-      pip install pytest-xdist 
-      pip install pytest-bdd 
