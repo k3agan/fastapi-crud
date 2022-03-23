@@ -24,7 +24,7 @@ notes = Table(
     Column("id", Integer, primary_key=True),
     Column("title", String(50)),
     Column("description", String(50)),
-    Column("created_date", DateTime, default=func.now(), nullable=False),
+    Column("created_date", DateTime, default=func.now(), nullable=False)
 )
 
 # databases query builder

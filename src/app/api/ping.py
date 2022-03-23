@@ -5,5 +5,6 @@ router = APIRouter()
 
 @router.get("/ping")
 def pong():
-    return {"ping": os.environ.get("DATABASE_URL")}
+    return {"ping": "pong!"}
 
+    # return {"ping": os.environ.get("DATABASE_URL")}

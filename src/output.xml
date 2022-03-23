@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="6" time="0.376" timestamp="2022-03-21T23:30:41.761831" hostname="86a23fda76f8"><testcase classname="tests.test_main" name="test_ping" time="0.014"><failure message="AssertionError: assert {'ping': 'pos..._fastapi_dev'} == {'ping': 'pong!'}&#10;  Differing items:&#10;  {'ping': 'postgresql://hello_fastapi:hello_fastapi@db/hello_fastapi_dev'} != {'ping': 'pong!'}&#10;  Use -v to get the full diff">test_app = &lt;starlette.testclient.TestClient object at 0x7ff48b307fa0&gt;
+
+    def test_ping(test_app):
+        response = test_app.get("/ping")
+        assert response.status_code == 200
+&gt;       assert response.json() == {"ping": "pong!"}
+E       AssertionError: assert {'ping': 'pos..._fastapi_dev'} == {'ping': 'pong!'}
+E         Differing items:
+E         {'ping': 'postgresql://hello_fastapi:hello_fastapi@db/hello_fastapi_dev'} != {'ping': 'pong!'}
+E         Use -v to get the full diff
+
+tests/test_main.py:11: AssertionError</failure></testcase><testcase classname="tests.test_main" name="test_ping_value" time="0.015"><failure message="AssertionError: assert 'postgresql:/...o_fastapi_dev' == 'pong!'&#10;  - pong!&#10;  + postgresql://hello_fastapi:hello_fastapi@db/hello_fastapi_dev">test_app = &lt;starlette.testclient.TestClient object at 0x7ff48b307fa0&gt;
+
+    def test_ping_value(test_app):
+        response = test_app.get("/ping")
+&gt;       assert response.json()['ping'] == 'pong!'
+E       AssertionError: assert 'postgresql:/...o_fastapi_dev' == 'pong!'
+E         - pong!
+E         + postgresql://hello_fastapi:hello_fastapi@db/hello_fastapi_dev
+
+tests/test_main.py:16: AssertionError</failure></testcase><testcase classname="tests.test_main" name="test_sequence" time="0.002" /><testcase classname="tests.test_main" name="test_length" time="0.002" /><testcase classname="tests.test_main" name="test_length_not_null" time="0.002" /><testcase classname="tests.test_notes" name="test_create_note" time="0.003"><failure message="assert 307 == 201&#10; +  where 307 = &lt;Response [307]&gt;.status_code">test_app = &lt;starlette.testclient.TestClient object at 0x7ff48b2e0670&gt;
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7ff48b2e0940&gt;
+
+    def test_create_note(test_app, monkeypatch):
+        payload = {
+            "title": "Test note",
+            "description": "This is a test note."
+        }
+        monkeypatch.setattr(crud, "post", lambda payload: 1)
+    
+        response = test_app.post("/notes", data=json.dumps(payload))
+&gt;       assert response.status_code == 201
+E       assert 307 == 201
+E        +  where 307 = &lt;Response [307]&gt;.status_code
+
+tests/test_notes.py:14: AssertionError</failure></testcase></testsuite></testsuites>
