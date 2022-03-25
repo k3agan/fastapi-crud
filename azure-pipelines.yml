@@ -31,7 +31,7 @@ steps:
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: "$(Pipeline.Workspace)/test-results.xml"
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)/test-results.xml"
       ArtifactName: "test-result"
       # ArtifactType: 'Pipeline'
       publishLocation:
