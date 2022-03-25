@@ -17,8 +17,6 @@ steps:
     inputs:
       versionSpec: "3.6"
 
-
-
   - task: DockerCompose@0
     inputs:
       containerregistrytype: "Azure Container Registry"
@@ -27,8 +25,19 @@ steps:
       action: "Run a Docker Compose command"
       dockerComposeCommand: "up -d --build"
 
+  - script: ls $(Pipeline.Workspace)\
+  - script: ls $(Pipeline.Workspace)\a\
+  - script: ls $(Pipeline.Workspace)\s\
+
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)/src/output/test-results.xml'
-      ArtifactName: 'test-result'
-      publishLocation: 'Container'
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)/**/test-results.xml"
+      ArtifactName: "test-result"
+      # ArtifactType: 'Pipeline'
+      publishLocation:
+        "Pipeline"
+
+        #     - task: PublishPipelineArtifact@1
+        # inputs:
+        #   artifactName: $(app_pipeline_artifact_name)
+        #   artifactType: pipeline
