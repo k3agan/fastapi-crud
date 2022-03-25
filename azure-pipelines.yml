@@ -29,8 +29,7 @@ steps:
     azureSubscription: 'Pay-As-You-Go (7a3cd95f-2d6e-4cb6-94ae-52379e216b9a)'
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Run a Docker Compose command'
-    dockerComposeCommand: 'docker-compose up'
-    arguments: '-d --build'
+    dockerComposeCommand: 'up -d --build'
     
 - task: DockerCompose@0
   inputs:
@@ -38,4 +37,4 @@ steps:
     azureSubscription: 'Pay-As-You-Go (7a3cd95f-2d6e-4cb6-94ae-52379e216b9a)'
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Run a Docker Compose command'
-    dockerComposeCommand: 'docker-compose exec web pytest .'
+    dockerComposeCommand: 'exec web pytest .'
