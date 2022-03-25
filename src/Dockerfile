@@ -22,4 +22,4 @@ RUN mkdir ./output; \
 # copy project
 COPY . /usr/src/app/
 
-ENTRYPOINT ["pytest", ".","--junitxml=.output/test-results.xml"]
+ENTRYPOINT ["pytest", ".","--junitxml=./output/test-results.xml"]
