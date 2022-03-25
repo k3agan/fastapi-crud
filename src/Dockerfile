@@ -14,7 +14,8 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /usr/src/app/requirements.txt
 
 # install dependencies
-RUN set -eux \
+RUN mkdir ${OUTPUT}; \
+    set -eux \
     && apk add --no-cache --virtual .build-deps build-base \
     libressl-dev libffi-dev gcc musl-dev python3-dev \
     postgresql-dev bash \
