@@ -23,15 +23,15 @@ steps:
 #   pip install pytest-xdist 
 #   pip install pytest-bdd 
 
-
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Azure Container Registry'
     azureSubscription: 'Pay-As-You-Go (7a3cd95f-2d6e-4cb6-94ae-52379e216b9a)'
     dockerComposeFile: '**/docker-compose.yml'
     action: 'Run a Docker Compose command'
-    dockerComposeCommand: 'docker-compose up -d --build'
-
+    dockerComposeCommand: 'docker-compose up'
+    arguments: '-d --build'
+    
 - task: DockerCompose@0
   inputs:
     containerregistrytype: 'Azure Container Registry'
