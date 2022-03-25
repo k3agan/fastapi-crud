@@ -1,3 +1,5 @@
+
+ARG OUTPUT=./output
 # pull official base image
 FROM python:3.9.4-alpine
 
@@ -22,3 +24,6 @@ RUN set -eux \
 
 # copy project
 COPY . /usr/src/app/
+
+# ENTRYPOINT [ "web", "pytest", ".","--junitxml=${OUTPUT}/test-results.xml"]
+ENTRYPOINT [ "web", "pytest", ".","--junitxml=./test-results.xml"]
