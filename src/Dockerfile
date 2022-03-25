@@ -20,8 +20,7 @@ RUN set -eux \
     postgresql-dev bash \
     && pip install --upgrade pip setuptools wheel \
     && pip install -r /usr/src/app/requirements.txt \
-    && rm -rf /root/.cache/pip \
-    && mkdir ${OUTPUT}
+    && rm -rf /root/.cache/pip
 # copy project
 COPY . /usr/src/app/
 
