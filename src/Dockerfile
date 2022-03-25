@@ -20,10 +20,9 @@ RUN set -eux \
     postgresql-dev bash \
     && pip install --upgrade pip setuptools wheel \
     && pip install -r /usr/src/app/requirements.txt \
-    && rm -rf /root/.cache/pip
-
+    && rm -rf /root/.cache/pip \
+    && mkdir ${OUTPUT}
 # copy project
 COPY . /usr/src/app/
 
-ENTRYPOINT [ "web", "pytest", ".","--junitxml=${OUTPUT}/test-results.xml"]
-# ENTRYPOINT ["pytest", ".","--junitxml=./test-results.xml"]
+ENTRYPOINT ["pytest", ".","--junitxml=${OUTPUT}/test-results.xml"]
