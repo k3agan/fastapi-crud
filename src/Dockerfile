@@ -25,5 +25,5 @@ RUN set -eux \
 # copy project
 COPY . /usr/src/app/
 
-# ENTRYPOINT [ "web", "pytest", ".","--junitxml=${OUTPUT}/test-results.xml"]
-ENTRYPOINT ["pytest", ".","--junitxml=./test-results.xml"]
+ENTRYPOINT [ "web", "pytest", ".","--junitxml=${OUTPUT}/test-results.xml"]
+# ENTRYPOINT ["pytest", ".","--junitxml=./test-results.xml"]
