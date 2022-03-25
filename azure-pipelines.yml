@@ -25,13 +25,13 @@ steps:
       action: "Run a Docker Compose command"
       dockerComposeCommand: "up -d --build"
 
-  # - script: ls $(Pipeline.Workspace)\
-  # - script: ls $(Pipeline.Workspace)\a\
-  # - script: ls $(Pipeline.Workspace)\s\
+  - script: ls $(Pipeline.Workspace)/
+  - script: ls $(Pipeline.Workspace)/a/
+  - script: ls $(Pipeline.Workspace)/s/
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: "$(Build.ArtifactStagingDirectory)/test-results/test-results.xml"
+      PathtoPublish: "$(Pipeline.Workspace)/test-results.xml"
       ArtifactName: "test-result"
       # ArtifactType: 'Pipeline'
       publishLocation:
